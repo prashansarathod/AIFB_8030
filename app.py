@@ -1,6 +1,56 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+import streamlit as st
+
+# 🔷 Sidebar Navigation
+st.sidebar.title("🔍 Navigation")
+section = st.sidebar.radio("Go to section:", [
+    "📊 Dashboard Overview", 
+    "🔌 Integration Plan", 
+    "🛠 Prototype Tools", 
+    "🔁 Change Management"
+])
+
+# 🧠 Streamlit Dashboard Sections
+st.title("🧠 Intelligent Demand Forecasting System")
+
+# 📊 Main Dashboard (default view)
+if section == "📊 Dashboard Overview":
+    st.markdown("### Welcome to the Forecasting & Reorder Dashboard")
+    st.write("Use the sidebar to explore how our prototype integrates and supports decision-making.")
+
+# 🔌 Integration Plan
+elif section == "🔌 Integration Plan":
+    st.markdown("## 🔌 Integration Plan")
+    st.image("integration_diagram.png", caption="System Integration Workflow", use_column_width=True)
+    st.markdown("""
+    - Integrated with Inventory Management System (CSV/API)
+    - Forecasting Engine built using Prophet & Classical ML
+    - Outputs plugged into ERP or Reorder systems
+    """)
+
+# 🛠 Prototype Tools
+elif section == "🛠 Prototype Tools":
+    st.markdown("## 🛠 Prototype Tools")
+    st.markdown("""
+    - **Working Forecasting Model**: Supports daily/monthly predictions using Prophet and ML
+    - **Visual Interface**: Charts, metrics, and recommendations
+    - **Reorder Generator**: Auto-calculates reorder points
+    """)
+    st.success("Prototype built with Python + Streamlit")
+
+# 🔁 Change Management
+elif section == "🔁 Change Management":
+    st.markdown("## 🔁 Change Management")
+    st.markdown("""
+    - **Transparency**: Forecast logic and inputs shown clearly
+    - **Ease of Use**: Clean UI for non-technical users
+    - **Adoption Support**: Minimizes resistance by aligning with current Excel workflows
+    """)
+    st.info("This dashboard reduces adoption barriers across planning teams.")
+
+
 
 # -----------------------
 # LOAD DATA
@@ -72,3 +122,5 @@ st.pyplot(fig2)
 # -----------------------
 with st.expander(" View Reorder Plan Table"):
     st.dataframe(product_forecast[['ds', 'forecasted_demand', 'current_inventory', 'reorder_flag', 'reorder_quantity']])
+
+st.download_button("Download Reorder Plan CSV", product_forecast.to_csv(index=False), file_name="reorder_plan.csv")
