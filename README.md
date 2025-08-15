@@ -77,7 +77,7 @@ Retailers struggle with **stockouts** and **overstocking**. This DSS predicts de
 ---
 
 ## Repository Structure
-├─ app.py # Streamlit dashboard
+- ├─ app.py # Streamlit dashboard
 ├─ notebooks/
 │ ├─ A2.ipynb # EDA, modeling, comparisons
 ├─ data/
